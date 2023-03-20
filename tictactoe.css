@@ -53,3 +53,14 @@ background-color: beige;
 .bt-0{
 border-top:0;
 }
+
+#reset-btn{
+    width: 72px;
+    height: 38px;
+    border-radius: 12px;
+    border-width: 0px;
+    cursor: pointer;
+    background-color: rgb(48, 1, 1);
+    color: #fff;
+    font-weight: 600;
+}

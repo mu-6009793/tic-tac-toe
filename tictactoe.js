@@ -22,7 +22,7 @@ const checkwin=()=>{
   wins.forEach(e=>{
     if((boxtext[e[0]].innerText===boxtext[e[1]].innerText)&&(boxtext[e[2]].innerText===boxtext[e[1]].innerText)&&(boxtext[e[0]].innerText!=="")){
 
-      document.querySelector('.info').innerText = boxtext[e[0]].innerText+ 'won'
+      document.querySelector('.info').innerText = boxtext[e[0]].innerText+ " won"
       isgameover=  true;
       console.log('hii')
     }
@@ -34,11 +34,19 @@ let boxes= document.getElementsByClassName('box');
 Array.from(boxes).forEach(element=>{
 let boxtext =element.querySelector('.boxtext')
 element.addEventListener('click', ()=>{
-    if(boxtext.innerText===''){
+  if(isgameover && boxtext.innerText===''){
+    boxtext.innerText='';
+    alert('game is over please reset');
+   }
+   if(!isgameover && boxtext.innerText!==''){
+    alert('position already occupied');
+   }
+    if(!isgameover && boxtext.innerText===''){
      boxtext.innerText=turn1;
       turn1 = changeturn()
      turn.play()
      checkwin();
+     
    if(!isgameover){
     document.getElementsByClassName('info').innerText='trun for' +turn1
    }
@@ -46,14 +54,18 @@ element.addEventListener('click', ()=>{
 })
 })
 
+let resetBtn = document.getElementById('reset-btn')
 
-const resetfunc = () => {
-  Array.from(boxes).forEach(e=>{
-    let reset = document.getElementsByClassName('boxtext');
-    reset.reset();
+resetBtn.addEventListener('click', () => {
+  let boxtext= document.getElementsByClassName('boxtext')
+  let wins= [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8]
+  ]
+  wins.forEach(e => {
+    for(let i=0; i<3; i++) {
+      boxtext[e[i]].innerText=""
+    }
   })
-}
-
-
-let reset = document.getElementById("reset-btn")
-reset.addEventListener('click', resetfunc)
+})
