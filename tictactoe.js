@@ -34,7 +34,7 @@ let boxes= document.getElementsByClassName('box');
 Array.from(boxes).forEach(element=>{
 let boxtext =element.querySelector('.boxtext')
 element.addEventListener('click', ()=>{
-  if(isgameover && (boxtext.innerText==='' || boxes.innerText!=='')){
+  if(isgameover && (boxtext.innerText==='')){
     alert('game is over please reset');
    }
    if(!isgameover && boxtext.innerText!==''){
@@ -67,4 +67,6 @@ resetBtn.addEventListener('click', () => {
       boxtext[e[i]].innerText=""
     }
   })
+  isgameover=false
+  turn1 = "X"
 })
